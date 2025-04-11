@@ -80,8 +80,8 @@ const printBoard = (tiles) => {
 }
 
 const parseEngineResponse = (msg) => {
-  const [drop, moveDirection] = msg.trim().split(" ");
-  return moveDirection
+  const [drop, direction] = msg.trim().split(" ");
+  return {drop, direction};
 }
 
 const slideTiles = (direction, board) => {
@@ -107,7 +107,7 @@ const slideTiles = (direction, board) => {
 
 const hasLegalMoves = (board) => {
   const copy = Board.from(board.tiles);
-  return copy.moveUp() && copy.moveDown() && copy.moveLeft() && copy.moveRight();
+  return copy.moveUp() || copy.moveDown() || copy.moveLeft() || copy.moveRight();
 }
 
 const engineMove = (time) => {
